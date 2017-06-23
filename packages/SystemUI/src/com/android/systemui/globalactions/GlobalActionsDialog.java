@@ -448,13 +448,23 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
         @Override
         public void onPress() {
             // shutdown by making sure radio and power are handled accordingly.
-            mWindowManagerFuncs.shutdown(false /* confirm */);
+            mWindowManagerFuncs.shutdown();
         }
     }
 
-    private final class RestartAction extends SinglePressAction {
+    private final class RestartAction extends SinglePressAction implements LongPressAction {
         private RestartAction() {
-            super(R.drawable.ic_restart, R.string.global_action_reboot);
+            super(R.drawable.ic_restart, R.string.global_action_restart);
+        }
+
+        @Override
+        public boolean onLongPress() {
+            UserManager um = (UserManager) mContext.getSystemService(Context.USER_SERVICE);
+            if (!um.hasUserRestriction(UserManager.DISALLOW_SAFE_BOOT)) {
+                mWindowManagerFuncs.reboot(true);
+                return true;
+            }
+            return false;
         }
 
         @Override
@@ -469,7 +479,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
 
         @Override
         public void onPress() {
-            mWindowManagerFuncs.reboot(true /* confirm */);
+            mWindowManagerFuncs.reboot(false);
         }
     }
 
