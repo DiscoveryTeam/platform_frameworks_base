@@ -1067,6 +1067,13 @@ public class UsbDeviceManager {
             int id = 0;
             int titleRes = 0;
             Resources r = mContext.getResources();
+
+            if (Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.MTP_DIRTY_HACK, 1) == 1) {
+                mUsbDataUnlocked = true;
+                setCurrentFunctions(UsbManager.USB_FUNCTION_MTP, mUsbDataUnlocked);
+            }
+
             if (mAudioAccessoryConnected && !mAudioAccessorySupported) {
                 titleRes = com.android.internal.R.string.usb_unsupported_audio_accessory_title;
                 id = SystemMessage.NOTE_USB_AUDIO_ACCESSORY_NOT_SUPPORTED;
