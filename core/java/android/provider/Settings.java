@@ -4124,6 +4124,13 @@ public final class Settings {
          */
         public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
 
+        /**
+         * Volume key controls ringtone or media sound stream
+         * @hide
+         */
+        public static final String VOLUME_KEYS_CONTROL_MEDIA_STREAM =
+                "volume_keys_control_media_stream";
+
         /** Whether to skip music track with volume rocker 
         /**
          * @hide
@@ -4131,11 +4138,10 @@ public final class Settings {
         public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
 
         /**
-         * Volume key controls ringtone or media sound stream
+         * Whether to wake the screen with the volume keys, the value is boolean.
          * @hide
          */
-        public static final String VOLUME_KEYS_CONTROL_MEDIA_STREAM =
-                "volume_keys_control_media_stream";
+        public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
