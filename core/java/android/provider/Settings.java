@@ -4107,6 +4107,11 @@ public final class Settings {
                 "double_tap_sleep_lockscreen";
 
         /**
+         * @hide
+         */
+        public static final String SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
+
+        /**
          * show clear all recents button
          * @hide
          */
