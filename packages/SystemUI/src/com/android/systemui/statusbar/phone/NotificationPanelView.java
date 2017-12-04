@@ -49,7 +49,7 @@ import android.widget.FrameLayout;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
-import com.android.internal.util.nitrogen.NitrogenUtils;
+import com.android.internal.util.discovery.DUtils;
 import com.android.keyguard.KeyguardStatusView;
 import com.android.systemui.DejankUtils;
 import com.android.systemui.Interpolators;
@@ -256,7 +256,7 @@ public class NotificationPanelView extends PanelView implements
                 new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                NitrogenUtils.switchScreenOff(context);
+                DUtils.switchScreenOff(context);
                 return true;
             }
         });
@@ -850,9 +850,7 @@ public class NotificationPanelView extends PanelView implements
         }
         final int h = getMeasuredHeight();
         if ((mIsLockscreenDoubleTapEnabled
-                && mStatusBarState == StatusBarState.KEYGUARD
-                && (event.getY() < (h / 3) ||
-                event.getY() > (h - mStatusBarHeaderHeight))) ||
+                && mStatusBarState == StatusBarState.KEYGUARD) ||
                 (!mQsExpanded && mDoubleTapToSleepEnabled
                 && event.getY() < mStatusBarHeaderHeight)) {
             mDoubleTapToSleepGesture.onTouchEvent(event);

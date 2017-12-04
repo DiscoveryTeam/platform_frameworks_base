@@ -967,6 +967,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         // TODO: use MediaSessionManager.SessionListener to hook us up to future updates
         // in session state
 
+        mDiscoverySettingsObserver.observe();
+        mDiscoverySettingsObserver.update();
+
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext, mIconController);
         mSettingsObserver.onChange(false); // set up
@@ -5873,36 +5876,32 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOUBLE_TAP_SLEEP_GESTURE),
                     false, this, UserHandle.USER_ALL);
+            update();
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
+            update();
             if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN))) {
-                setLockscreenDoubleTapToSleep();
+                Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN))) {
+                setStatusBarWindowViewOptions();
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.DOUBLE_TAP_SLEEP_GESTURE))) {
+                Settings.System.DOUBLE_TAP_SLEEP_GESTURE))) {
                 setStatusBarWindowViewOptions();
             }
         }
 
         public void update() {
-            setDoubleTapNavbar();
-            setLockscreenDoubleTapToSleep();
-        }
-    }
-
-    private void setLockscreenDoubleTapToSleep() {
-        if (mStatusBarWindow != null) {
-            mStatusBarWindow.setLockscreenDoubleTapToSleep();
+            setStatusBarWindowViewOptions();
         }
     }
 
     private void setStatusBarWindowViewOptions() {
-        if (mStatusBarWindow != null) {
-            mStatusBarWindow.setStatusBarWindowViewOptions();
-        }
-    }
+         if (mStatusBarWindow != null) {
+             mStatusBarWindow.setStatusBarWindowViewOptions();
+         }
+     }
 
     private RemoteViews.OnClickHandler mOnClickHandler = new RemoteViews.OnClickHandler() {
 
