@@ -22,4 +22,9 @@
     <!-- Description for the screen zoom level that makes interface elements smallest. [CHAR LIMIT=24] -->
     <string name="screen_zoom_summary_smallest">Menor ainda</string>
 
+    <!-- Toast text and bg colors -->
+    <color name="toast_bg_color">#E6EEEEEE</color>
+    <color name="toast_text_color">@color/primary_text_default_material_light</color>
+
 </resources>
+
