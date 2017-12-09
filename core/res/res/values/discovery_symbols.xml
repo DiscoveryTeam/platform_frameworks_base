@@ -59,4 +59,7 @@
   <!-- LED pulse -->
   <java-symbol type="bool" name="config_ledCanPulse" />
 
+  <!-- Whether to show navbar in lock task mode -->
+  <java-symbol type="bool" name="config_showNavbarInLockTaskMode" />
+
 </resources>

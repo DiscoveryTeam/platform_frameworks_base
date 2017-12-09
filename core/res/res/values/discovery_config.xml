@@ -63,4 +63,7 @@
          Used to decide if we show pulse settings -->
     <bool name="config_ledCanPulse">false</bool>
 
+    <!--  Whether to show navbar in lock task mode -->
+    <bool name="config_showNavbarInLockTaskMode">false</bool>
+
 </resources>
