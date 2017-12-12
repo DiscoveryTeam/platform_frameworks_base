@@ -704,11 +704,8 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
         refreshSilentMode();
         mAirplaneModeOn.updateState(mAirplaneState);
         mAdapter.notifyDataSetChanged();
-<<<<<<< HEAD
-=======
         mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
         mDialog.setTitle(R.string.global_actions);
->>>>>>> 2d993f7... Add advanced reboot options
         if (mShowSilentToggle) {
             IntentFilter filter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
             mContext.registerReceiver(mRingerModeReceiver, filter);
