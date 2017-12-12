@@ -461,6 +461,18 @@ public class StatusBarManagerService extends IStatusBarService.Stub {
     }
 
     @Override
+    public void handleSystemNavigationKey(int key) throws RemoteException {
+        enforceExpandStatusBar();
+
+        if (mBar != null) {
+            try {
+                mBar.handleSystemNavigationKey(key);
+            } catch (RemoteException ex) {
+            }
+        }
+    }
+
+    @Override
     public void disable(int what, IBinder token, String pkg) {
         disableForUser(what, token, pkg, mCurrentUserId);
     }
