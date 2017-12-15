@@ -5035,11 +5035,18 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         haltTicker();
 
-        // The system wallpaper defines if QS should be light or dark.
-        WallpaperColors systemColors = mColorExtractor
-                .getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
-        final boolean useDarkTheme = systemColors != null
-                && (systemColors.getColorHints() & WallpaperColors.HINT_SUPPORTS_DARK_THEME) != 0;
+        int userThemeSetting = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.SYSTEM_UI_THEME, 0, mCurrentUserId);
+        boolean useDarkTheme = false;
+        if (userThemeSetting == 0) {
+            // The system wallpaper defines if QS should be light or dark.
+            WallpaperColors systemColors = mColorExtractor
+                    .getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
+            useDarkTheme = systemColors != null
+                    && (systemColors.getColorHints() & WallpaperColors.HINT_SUPPORTS_DARK_THEME) != 0;
+        } else {
+            useDarkTheme = userThemeSetting == 2;
+        }
         if (isUsingDarkTheme() != useDarkTheme) {
             try {
                 mOverlayManager.setEnabled("com.android.systemui.theme.dark",
@@ -6239,8 +6246,14 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN),
                     false, this, UserHandle.USER_ALL);
-            update();
-        }
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_TICKER),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEM_UI_THEME),
+                    false, this, UserHandle.USER_ALL);
+                    update();
+            }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
@@ -6254,7 +6267,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 setStatusBarWindowViewOptions();
             } else if (uri.equals(Settings.System.getUriFor(
                 Settings.System.HEADS_UP_BLACKLIST_VALUES))) {
-	        setHeadsUpBlacklist();   
+	            setHeadsUpBlacklist();   
             } else if (uri.equals(Settings.System.getUriFor(
                 Settings.System.SHOW_BATTERY_PERCENT))
                 || uri.equals(Settings.Secure.getUriFor(
@@ -6265,11 +6278,14 @@ public class StatusBar extends SystemUI implements DemoMode,
                 updateTickerAnimation();
             } else if (uri.equals(Settings.System.getUriFor(
                 Settings.System.HEADS_UP_WHITELIST_VALUES))) {
-		setHeadsUpWhitelist();
-           } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN))) {
+		        setHeadsUpWhitelist();
+            } else if (uri.equals(Settings.System.getUriFor(
+                Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN))) {
                 setStatusBarWindowViewOptions();
-           }
+            } else if (uri.equals(Settings.System.getUriFor(
+                Settings.System.SYSTEM_UI_THEME))) {
+                updateTheme();
+            }
         }
 
         public void update() {
