@@ -111,6 +111,14 @@
     <color name="material_red_A100">#ff8a80</color>
     <color name="material_red_A700">#d50000</color>
 
+    <!-- PIXEL Primary & accent colors -->
+    <eat-comment />
+
+    <color name="material_blue_50">#ffe8f0fe</color>
+    <color name="material_blue_200">#ff5e97f6</color>
+    <color name="material_blue_500">#ff4285f4</color>
+    <color name="material_blue_700">#ff3367d6</color>
+
     <!-- Time picker defaults when no theme is set -->
     <eat-comment />
 
