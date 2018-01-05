@@ -66,4 +66,7 @@
     <!--  Whether to show navbar in lock task mode -->
     <bool name="config_showNavbarInLockTaskMode">false</bool>
 
+    <!-- Whether to show navbar when fingerprint sensor is busy -->
+    <bool name="config_showNavbarWhenFingerprintSensorBusy">false</bool>
+
 </resources>
