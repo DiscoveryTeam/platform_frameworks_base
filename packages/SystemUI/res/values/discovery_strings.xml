@@ -59,4 +59,9 @@
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
     <string name="status_bar_notification_info_overflow" translatable="false">\u221E</string>
+
+    <!-- Show lte/4g switch -->
+    <string name="show_lte_fourgee_title">4G/LTE network icon</string>
+    <string name="show_lte_fourgee_summary">Display either the 4G or LTE network icon in the statusbar/QS panel</string>
+    <string name="statusbar_tuner_category_title">Hide items from statusbar</string>
 </resources>
