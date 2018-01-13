@@ -83,4 +83,5 @@ interface IStatusBarService
      * Discovery
      */
     void toggleCameraFlash();
+    void toggleNavigationBar(boolean enable);
 }
