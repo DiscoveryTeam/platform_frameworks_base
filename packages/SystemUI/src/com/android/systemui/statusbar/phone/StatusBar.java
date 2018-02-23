@@ -630,9 +630,18 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (DEBUG_MEDIA) Log.v(TAG, "DEBUG_MEDIA: onMetadataChanged: " + metadata);
             mMediaMetadata = metadata;
             updateMediaMetaData(true, true);
-            if (mTickerEnabled == 2) {
-                tickTrackInfo();
+
+            setMediaPlaying();
+        }
+
+        @Override
+        public void onSessionDestroyed() {
+            super.onSessionDestroyed();
+
+            if (mTicker != null) {
+                mTicker.resetShownMediaMetadata();
             }
+            setMediaPlaying();
         }
     };
 
@@ -2430,6 +2439,11 @@ public class StatusBar extends SystemUI implements DemoMode,
                 mMediaController = controller;
                 mMediaController.registerCallback(mMediaListener);
                 mMediaMetadata = mMediaController.getMetadata();
+                if (mTicker != null) {
+                    mTicker.resetShownMediaMetadata();
+                }
+                setMediaPlaying();
+
                 if (DEBUG_MEDIA) {
                     Log.v(TAG, "DEBUG_MEDIA: insert listener, receive metadata: "
                             + mMediaMetadata);
