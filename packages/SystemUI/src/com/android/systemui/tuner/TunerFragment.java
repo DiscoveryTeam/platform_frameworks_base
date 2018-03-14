@@ -68,8 +68,10 @@ public class TunerFragment extends PreferenceFragment {
         if (DUtils.isWifiOnly(getActivity())) {
             prefSet.removePreference(mShowLteFourGee);
         } else {
-            mShowLteFourGee.setChecked((Settings.System.getInt(resolver,
-                    Settings.System.SHOW_LTE_FOURGEE, 0) == 1));
+            if (mShowLteFourGee != null) {
+                mShowLteFourGee.setChecked((Settings.System.getInt(resolver,
+                        Settings.System.SHOW_LTE_FOURGEE, 0) == 1));
+            }
         }
     }
 

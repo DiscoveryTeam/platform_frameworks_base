@@ -1750,6 +1750,10 @@ public final class Settings {
             return true;
         }
 
+        public int getCurrentGeneration() {
+            return mCurrentGeneration;
+        }
+
         private int readCurrentGeneration() {
             try {
                 return mArray.get(mIndex);
@@ -1858,6 +1862,7 @@ public final class Settings {
 
         public String getStringForUser(ContentResolver cr, String name, final int userHandle) {
             final boolean isSelf = (userHandle == UserHandle.myUserId());
+            int currentGeneration = -1;
             if (isSelf) {
                 synchronized (NameValueCache.this) {
                     if (mGenerationTracker != null) {
@@ -1870,6 +1875,9 @@ public final class Settings {
                             mValues.clear();
                         } else if (mValues.containsKey(name)) {
                             return mValues.get(name);
+                        }
+                        if (mGenerationTracker != null) {
+                            currentGeneration = mGenerationTracker.getCurrentGeneration();
                         }
                     }
                 }
@@ -1961,7 +1969,10 @@ public final class Settings {
                                         });
                                     }
                                 }
-                                mValues.put(name, value);
+                                if (mGenerationTracker != null && currentGeneration ==
+                                        mGenerationTracker.getCurrentGeneration()) {
+                                    mValues.put(name, value);
+                                }
                             }
                         } else {
                             if (LOCAL_LOGV) Log.i(TAG, "call-query of user " + userHandle
@@ -2002,7 +2013,10 @@ public final class Settings {
 
                 String value = c.moveToNext() ? c.getString(0) : null;
                 synchronized (NameValueCache.this) {
-                    mValues.put(name, value);
+                    if(mGenerationTracker != null &&
+                            currentGeneration == mGenerationTracker.getCurrentGeneration()) {
+                        mValues.put(name, value);
+                    }
                 }
                 if (LOCAL_LOGV) {
                     Log.v(TAG, "cache miss [" + mUri.getLastPathSegment() + "]: " +
@@ -4172,6 +4186,18 @@ public final class Settings {
          * @hide
          */
         public static final String SHOW_LTE_FOURGEE = "show_lte_fourgee";
+
+        /**
+         * Change the delay when a screenshot is taken
+         * @hide
+         */
+        public static final String SCREENSHOT_DELAY = "screenshot_delay";
+
+        /**
+         * Whether to gently vibrate instead of playing a sound when in-call and a notification is pushed
+         * @hide
+         */
+        public static final String INCALL_NOTIFICATIONS_VIBRATE = "incall_notifications_vibrate";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
