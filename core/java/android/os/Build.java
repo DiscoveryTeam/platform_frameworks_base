@@ -51,7 +51,7 @@ public class Build {
     /**
      * @hide
      */
-    public static final String EXTENDED_DISPLAY_VERSION = getString("ro.extended.display.version");
+    public static final String DISCOVERY_VERSION = getString("ro.discovery.display.version");
 
     /** The name of the overall product. */
     public static final String PRODUCT = getString("ro.product.name");
