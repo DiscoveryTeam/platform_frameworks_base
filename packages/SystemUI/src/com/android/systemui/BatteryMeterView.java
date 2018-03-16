@@ -121,7 +121,6 @@ public class BatteryMeterView extends LinearLayout implements
 
         mEndPadding = res.getDimensionPixelSize(R.dimen.battery_level_padding_start);
         updateShowPercent();
-        updateShowImage();
 
         Context dualToneDarkTheme = new ContextThemeWrapper(context,
                 Utils.getThemeAttr(context, R.attr.darkIconTheme));
@@ -275,11 +274,10 @@ public class BatteryMeterView extends LinearLayout implements
         int batteryHeight = res.getDimensionPixelSize(R.dimen.status_bar_battery_icon_height);
         int batteryWidth = res.getDimensionPixelSize(R.dimen.status_bar_battery_icon_width);
         int marginBottom = res.getDimensionPixelSize(R.dimen.battery_margin_bottom);
-        int marginStart = layoutWidth - batteryWidth;
 
         LinearLayout.LayoutParams scaledLayoutParams = new LinearLayout.LayoutParams(
-                (int) (layoutWidth * iconScaleFactor), (int) (batteryHeight * iconScaleFactor));
-        scaledLayoutParams.setMargins(marginStart, 0, 0, marginBottom);
+                (int) (batteryWidth * iconScaleFactor), (int) (batteryHeight * iconScaleFactor));
+        scaledLayoutParams.setMargins(0, 0, 0, marginBottom);
 
         if (mBatteryIconView != null) {
             mBatteryIconView.setLayoutParams(scaledLayoutParams);
