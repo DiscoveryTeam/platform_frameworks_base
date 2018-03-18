@@ -321,6 +321,8 @@ public class NotificationManagerService extends SystemService {
     // for checking lockscreen status
     private KeyguardManager mKeyguardManager;
 
+    private boolean mIsMediaPlaying;
+
     private Uri mInCallNotificationUri;
     private AudioAttributes mInCallNotificationAudioAttributes;
     private float mInCallNotificationVolume;
@@ -3154,6 +3156,11 @@ public class NotificationManagerService extends SystemService {
                 String[] args, ShellCallback callback, ResultReceiver resultReceiver)
                 throws RemoteException {
             new ShellCmd().exec(this, in, out, err, args, callback, resultReceiver);
+        }
+
+        @Override
+        public void setMediaPlaying(boolean playing) {
+            mIsMediaPlaying = playing;
         }
 
         @Override

@@ -598,6 +598,9 @@ public class StatusBar extends SystemUI implements DemoMode,
     private boolean mDozingRequested;
     protected boolean mScrimSrcModeEnabled;
 
+    private Entry mEntryToRefresh;
+    private NotificationManager mNoMan;
+
     public static final Interpolator ALPHA_IN = Interpolators.ALPHA_IN;
     public static final Interpolator ALPHA_OUT = Interpolators.ALPHA_OUT;
 
@@ -646,23 +649,36 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     };
 
-    private void tickTrackInfo() {
-        ArrayList<Entry> activeNotifications = mNotificationData.getActiveNotifications();
-        int N = activeNotifications.size();
+    public void setMediaPlaying() {
         if (PlaybackState.STATE_PLAYING ==
                 getMediaControllerPlaybackState(mMediaController)
                 || PlaybackState.STATE_BUFFERING ==
                 getMediaControllerPlaybackState(mMediaController)) {
-            final String pkg = mMediaController.getPackageName();
-            for (int i = 0; i < N; i++) {
-                final Entry entry = activeNotifications.get(i);
-                if (entry.notification.getPackageName().equals(pkg)) {
-                    tick(entry.notification, true, true, mMediaMetadata);
-                    break;
-                }
-            }
+            tickTrackInfo(mMediaController);
+            mNoMan.setMediaPlaying(true);
+        } else {
+            mNoMan.setMediaPlaying(false);
         }
     }
+
+    private void tickTrackInfo(MediaController mc) {
+        ArrayList<Entry> activeNotifications = mNotificationData.getAllNotifications();
+        int N = activeNotifications.size();
+        final String pkg = mc.getPackageName();
+        for (int i = 0; i < N; i++) {
+            final Entry entry = activeNotifications.get(i);
+            if (entry.notification.getPackageName().equals(pkg)) {
+                if (mTickerEnabled == 2) {
+                    tick(entry.notification, true, true, mMediaMetadata);
+                }
+                // NotificationInflater calls async MediaNotificationProcessoron to create notification
+                // colors and when finished will trigger AsyncInflationFinished for all registered callbacks
+                // like StatusBar. From there we'll send updated colors to Pulse
+                mEntryToRefresh = entry;
+                break;
+            }
+        }
+}
 
     private final OnChildLocationsChangedListener mOnChildLocationsChangedListener =
             new OnChildLocationsChangedListener() {
@@ -1125,6 +1141,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                     R.id.header_debug_info);
             mNotificationPanelDebugText.setVisibility(View.VISIBLE);
         }
+
+        mNoMan = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
         boolean isInLockTaskMode = false;
         try {

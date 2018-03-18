@@ -35,7 +35,7 @@ import android.view.ViewStub;
 import android.widget.ImageSwitcher;
 import android.widget.LinearLayout;
 
-import com.android.internal.utils.du.UserContentObserver;
+import com.android.internal.util.discovery.UserContentObserver;
 import com.android.systemui.Dependency;
 import com.android.systemui.Interpolators;
 import com.android.systemui.R;
@@ -110,12 +110,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             super.observe();
             mContentResolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_TICKER),
-                    false, this, UserHandle.USER_ALL);
-            mContentResolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_CARRIER),
-                    false, this, UserHandle.USER_ALL);
-            mContentResolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_LOGO),
                     false, this, UserHandle.USER_ALL);
             mContentResolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CLOCK),
@@ -284,7 +278,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconAreaInner, animate);
         if (((Clock)mLeftClock).isEnabled()) {
-            animateHide(mLeftClock, animate, true);
+            animateHide(mLeftClock, animate);
         }
     }
 
@@ -295,7 +289,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         }
     }
 
-    }
 
     /**
      * Hides a view.
