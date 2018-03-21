@@ -4574,5 +4574,8 @@ message MetricsEvent {
 
     // Discovery constants
     DISCOVERY_SETTINGS = 1500;
+
+    // Discovery QS
+    QUICK_SETTINGS = 1501;
   }
 }
