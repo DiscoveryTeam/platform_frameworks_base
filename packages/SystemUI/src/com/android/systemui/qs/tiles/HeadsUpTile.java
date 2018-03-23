@@ -18,6 +18,7 @@ package com.android.systemui.qs.tiles;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.service.quicksettings.Tile;
@@ -72,6 +73,11 @@ public class HeadsUpTile extends QSTileImpl<BooleanState> {
         Settings.Global.putInt(mContext.getContentResolver(),
                 Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED,
                 enabled ? 1 : 0);
+        if (Settings.Global.getInt(mContext.getContentResolver(),
+        		Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED, 0) == 1) {
+        	Settings.System.putIntForUser(mContext.getContentResolver(),
+        		Settings.System.STATUS_BAR_SHOW_TICKER, 0, UserHandle.USER_CURRENT);
+        }
     }
 
     @Override
