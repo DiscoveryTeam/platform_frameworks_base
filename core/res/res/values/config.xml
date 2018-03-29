@@ -931,13 +931,6 @@
     -->
     <integer name="config_longPressOnPowerBehavior">1</integer>
 
-    <!-- Control the behavior when the user long presses the back button.  Non-zero values are only
-         valid for watches as part of CDD/CTS.
-            0 - Nothing
-            1 - Go to voice assist
-    -->
-    <integer name="config_longPressOnBackBehavior">0</integer>
-
     <!-- Control the behavior when the user panic presses the back button.
             0 - Nothing
             1 - Go to home
@@ -1146,10 +1139,11 @@
             7 - Action Sleep
             8 - Last app
             9 - Toggle split screen
+            10 - Screenshot
          This needs to match the constants in
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
-    <integer name="config_longPressOnHomeBehavior">2</integer>
+    <integer name="config_longPressOnHomeBehavior">5</integer>
 
     <!-- Control the behavior when the user double-taps the home button.
             0 - Nothing
@@ -1162,10 +1156,29 @@
             7 - Action Sleep
             8 - Last app
             9 - Toggle split screen
+            10 - Screenshot
          This needs to match the constants in
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
     <integer name="config_doubleTapOnHomeBehavior">0</integer>
+
+    <!-- Control the behavior when the user presses the menu button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+            13 - Back
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_pressOnMenuBehavior">1</integer>
 
     <!-- Control the behavior when the user long presses the menu button.
             0 - Nothing
@@ -1178,10 +1191,184 @@
             7 - Action Sleep
             8 - Last app
             9 - Toggle split screen
+            10 - Screenshot
          This needs to match the constants in
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
-    <integer name="config_longPressOnMenuBehavior">8</integer>
+    <integer name="config_longPressOnMenuBehavior">7</integer>
+
+    <!-- Control the behavior when the user double-taps the menu button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_doubleTapOnMenuBehavior">8</integer>
+
+    <!-- Control the behavior when the user presses the back button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+            13 - Back
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_pressOnBackBehavior">13</integer>
+
+    <!-- Control the behavior when the user long presses the back button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_longPressOnBackBehavior">0</integer>
+
+    <!-- Control the behavior when the user double-taps the back button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_doubleTapOnBackBehavior">0</integer>
+
+    <!-- Control the behavior when the user presses the app switch button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+            13 - Back
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_pressOnAppSwitchBehavior">2</integer>
+
+    <!-- Control the behavior when the user double-taps the app switch button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_doubleTapOnAppSwitchBehavior">9</integer>
+
+    <!-- Control the behavior when the user long presses the app switch button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_longPressOnAppSwitchBehavior">8</integer>
+
+    <!-- Control the behavior when the user presses the assist button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Searchpresses
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+            13 - Back
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_pressOnAssistBehavior">3</integer>
+
+    <!-- Control the behavior when the user double-taps the assist button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_doubleTapOnAssistBehavior">4</integer>
+
+    <!-- Control the behavior when the user long presses the assist button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+            6 - Launch Camera
+            7 - Action Sleep
+            8 - Last app
+            9 - Toggle split screen
+            10 - Screenshot
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_longPressOnAssistBehavior">5</integer>
 
     <!-- Hardware 'face' keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each

@@ -410,7 +410,6 @@
   <java-symbol type="integer" name="config_extraFreeKbytesAbsolute" />
   <java-symbol type="integer" name="config_immersive_mode_confirmation_panic" />
   <java-symbol type="integer" name="config_longPressOnPowerBehavior" />
-  <java-symbol type="integer" name="config_longPressOnBackBehavior" />
   <java-symbol type="integer" name="config_backPanicBehavior" />
   <java-symbol type="integer" name="config_lowMemoryKillerMinFreeKbytesAdjust" />
   <java-symbol type="integer" name="config_lowMemoryKillerMinFreeKbytesAbsolute" />
@@ -1632,12 +1631,23 @@
   <java-symbol type="integer" name="config_defaultUiModeType" />
   <java-symbol type="integer" name="config_deskDockRotation" />
   <java-symbol type="integer" name="config_deviceHardwareKeys" />
-  <java-symbol type="integer" name="config_doubleTapOnHomeBehavior" />
   <java-symbol type="integer" name="config_lidKeyboardAccessibility" />
   <java-symbol type="integer" name="config_lidNavigationAccessibility" />
   <java-symbol type="integer" name="config_lidOpenRotation" />
+  <java-symbol type="integer" name="config_pressOnMenuBehavior" />
+  <java-symbol type="integer" name="config_pressOnBackBehavior" />
+  <java-symbol type="integer" name="config_pressOnAppSwitchBehavior" />
+  <java-symbol type="integer" name="config_pressOnAssistBehavior" />
   <java-symbol type="integer" name="config_longPressOnHomeBehavior" />
   <java-symbol type="integer" name="config_longPressOnMenuBehavior" />
+  <java-symbol type="integer" name="config_longPressOnAppSwitchBehavior" />
+  <java-symbol type="integer" name="config_longPressOnAssistBehavior" />
+  <java-symbol type="integer" name="config_longPressOnBackBehavior" />
+  <java-symbol type="integer" name="config_doubleTapOnMenuBehavior" />
+  <java-symbol type="integer" name="config_doubleTapOnBackBehavior" />
+  <java-symbol type="integer" name="config_doubleTapOnAppSwitchBehavior" />
+  <java-symbol type="integer" name="config_doubleTapOnAssistBehavior" />
+  <java-symbol type="integer" name="config_doubleTapOnHomeBehavior" />
   <!-- Last app switch animations -->
   <java-symbol type="anim" name="last_app_in" />
   <java-symbol type="anim" name="last_app_out" />
