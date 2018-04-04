@@ -84,6 +84,9 @@
   <java-symbol type="color" name="toast_bg_color" />
   <java-symbol type="color" name="toast_text_color" />
 
+  <!-- Notification sender text color -->
+  <java-symbol type="color" name="sender_text_color" /> 
+
   <!-- Tooltip text colors -->
   <java-symbol type="color" name="tooltip_text_light" />
   <java-symbol type="color" name="tooltip_text_dark" />
