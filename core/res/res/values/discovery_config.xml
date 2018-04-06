@@ -104,6 +104,7 @@
         <item>com.yowhatsapp</item>
         <item>org.telegram.messenger</item>
         <item>org.telegram.plus</item>
+        <item>org.thunderdog.challegram</item>
     </string-array>
     
 </resources>
