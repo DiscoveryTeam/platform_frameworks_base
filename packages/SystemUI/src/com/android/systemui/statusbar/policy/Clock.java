@@ -104,6 +104,8 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
     private boolean mShowSeconds;
     private Handler mSecondsHandler;
 
+    private boolean mQuickStatusBarHeader;
+
     public Clock(Context context) {
         this(context, null);
     }
@@ -124,6 +126,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
         } finally {
             a.recycle();
         }
+        updateSettings();
     }
 
     @Override
@@ -334,7 +337,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
 
         String result = sdf.format(mCalendar.getTime());
 
-        if (mClockDateDisplay != CLOCK_DATE_DISPLAY_GONE) {
+        if (mClockDateDisplay != CLOCK_DATE_DISPLAY_GONE && !mQuickStatusBarHeader) {
             Date now = new Date();
 
             if (mClockDateFormat == null || mClockDateFormat.isEmpty()) {
@@ -375,7 +378,7 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
         if (mClockDateDisplay != CLOCK_DATE_DISPLAY_NORMAL) {
             if (dateString != null) {
                 int dateStringLen = dateString.length();
-                if (mClockDateDisplay == CLOCK_DATE_DISPLAY_GONE) {
+                if (mClockDateDisplay == CLOCK_DATE_DISPLAY_GONE || mQuickStatusBarHeader) {
                     formatted.delete(0, dateStringLen);
                 } else {
                     if (mClockDateDisplay == CLOCK_DATE_DISPLAY_SMALL) {
@@ -492,4 +495,8 @@ public class Clock extends TextView implements DemoMode, CommandQueue.Callbacks,
             mSecondsHandler.postAtTime(this, SystemClock.uptimeMillis() / 1000 * 1000 + 1000);
         }
     };
+
+    public void setIsQshb(boolean qshb) {
+        mQuickStatusBarHeader = qshb;
+    }
 }

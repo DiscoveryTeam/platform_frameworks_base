@@ -6274,7 +6274,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
 
-    private void updateBatterySettings() {
+    public void updateBatterySettings() {
         if (mStatusBarView != null) {
             mStatusBarView.updateBatterySettings();
         }
@@ -6283,6 +6283,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
         if (mQuickStatusBarHeader != null) {
             mQuickStatusBarHeader.updateBatterySettings();
+        }
+    }
+
+    public void updateQsbhClock() {
+        if (mQuickStatusBarHeader != null) {
+            mQuickStatusBarHeader.updateQsbhClock();
         }
     }
 
