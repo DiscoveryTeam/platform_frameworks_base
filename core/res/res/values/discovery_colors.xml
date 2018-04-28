@@ -78,4 +78,7 @@
     <!-- App permission tint -->
     <color name="app_permission_icon_tint">@android:color/black</color>
 
+    <!-- Two target preference vertical divider color -->
+    <color name="list_divider_dark">#64000000</color>
+
 </resources>
