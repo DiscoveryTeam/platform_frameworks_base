@@ -34,4 +34,7 @@
     <color name="floating_action_button_icon_color">@android:color/white</color>
 
     <color name="powersave_warning_color">#ff8e0101</color><!-- rgb 142 1 1 -->
+
+    <!-- Power menu wallpaper tint off color -->
+    <color name="power_menu_wallpaper_tint_off_color">#80202020</color>
 </resources>
