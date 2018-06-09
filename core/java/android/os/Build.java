@@ -95,6 +95,9 @@ public class Build {
     /** The end-user-visible name for the end product. */
     public static final String MODEL = getString("ro.product.model");
 
+    /** The maintainer of the device. */
+    public static final String MAINTAINER = getString("ro.product.maintainer");
+
     /** The system bootloader version number. */
     public static final String BOOTLOADER = getString("ro.bootloader");
 
